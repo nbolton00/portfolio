@@ -1,19 +1,19 @@
 /*-----------------------------------------------------------------------------------
 
  	Script - All Custom frontend jQuery scripts & functions
- 
+
 -----------------------------------------------------------------------------------*/
 setTimeout(function() { jQuery("body").addClass("loading"); },200); // Start loading animation
 
-jQuery(window).load(function($) {		
-	
+jQuery(window).load(function($) {
+
 	splitSection();
 	jQuery(window).resize(function() {
 		splitSection();
 	});
-	
-	
-	/*---------------------------------------------- 
+
+
+	/*----------------------------------------------
 			H I D E   P A G E   L O A D E R  + S M O O T H   S H O W
 	------------------------------------------------*/
 	var openSection = window.location.hash.substr(1);
@@ -21,16 +21,16 @@ jQuery(window).load(function($) {
 	jQuery("#page-loader .page-loader-inner").delay(500).fadeIn(10, function(){
 		jQuery("body").addClass("loading-end");
 		jQuery("#page-loader .page-loader-inner").fadeOut(1000, function(){
-			if (openSection) { 
-				jQuery('html,body').animate({ scrollTop: jQuery( "#"+openSection ).offset().top-jQuery("header").height()+80}, 10, 'easeInOutExpo'); 
-			}	
+			if (openSection) {
+				jQuery('html,body').animate({ scrollTop: jQuery( "#"+openSection ).offset().top-jQuery("header").height()+80}, 10, 'easeInOutExpo');
+			}
 		});
 		jQuery("#page-loader").delay(1300).animate({top:borderWidthHeight+'px',height:jQuery(window).height()-(borderWidthHeight*2)+'px'},10).slideUp(1000, 'easeInOutExpo',function(){ jQuery("#page-loader").animate({top:'0',height:'100%'},10) });
 	});
-	
-	
-	
-	/*---------------------------------------------- 
+
+
+
+	/*----------------------------------------------
 			 T R A N S I T I O N   (when leaving the page)
 	------------------------------------------------*/
 	jQuery(window).unload(function() { });		// work-around for browser back button
@@ -43,35 +43,35 @@ jQuery(window).load(function($) {
 			return true;
 		}
 	});
-	
+
 	function smoothtransistion(url) {
 		jQuery("#page-loader").slideDown(800, 'easeInOutExpo', function() {
 			setTimeout(function() { window.location = url; }, 300);
 		});
 		setTimeout(function() { jQuery("body").removeClass("loading-end"); }, 500);
 	}
-	
-	
-		
+
+
+
 	if( jQuery().isotope ) {
-		
-		/*---------------------------------------------- 
-					  C A L L   I S O T O P E   
-		------------------------------------------------*/	
+
+		/*----------------------------------------------
+					  C A L L   I S O T O P E
+		------------------------------------------------*/
 		jQuery('.masonry').each(function(){
 			var $container = jQuery(this);
-			
+
 			$container.imagesLoaded( function(){
 				$container.isotope({
 					itemSelector : '.masonry-item',
-					transformsEnabled: true			// Important for videos
-				});	
+					transformsEnabled: true,			// Important for videos
+				});
 			});
 		});
-		
-		
-		
-		/*---------------------------------------------- 
+
+
+
+		/*----------------------------------------------
 					 I S O T O P E : reorganize
 		------------------------------------------------*/
 		function reorganizeIsotope() {
@@ -92,17 +92,17 @@ jQuery(window).load(function($) {
 			});
 		}
 		reorganizeIsotope();
-			
+
 		jQuery(window).resize(function() {
 			reorganizeIsotope();
 		});
-		
-		
+
+
 	} /* END if isotope */
-	
-	
-	
-	/*---------------------------------------------- 
+
+
+
+	/*----------------------------------------------
 			 D R O P   D O W N   N A  V I   (Mobile) + SHARE CLICK
 	------------------------------------------------*/
 	jQuery('nav#main-nav ul').on("click", "li", function() {
@@ -110,10 +110,10 @@ jQuery(window).load(function($) {
 			if (jQuery(this).find("ul").length > 0) {
 				if (jQuery(this).find("ul").css('visibility') == 'hidden') {
 					jQuery(this).addClass("hovered");
-					return false;	
+					return false;
 				} else {
 					jQuery(this).removeClass("hovered");
-					return false;	
+					return false;
 				}
 			}
 		}
@@ -126,22 +126,22 @@ jQuery(window).load(function($) {
 			return true;
 		}
 	});
-	
-	
-	
-	
-	/*---------------------------------------------- 
-					 O P E N   N A V 
+
+
+
+
+	/*----------------------------------------------
+					 O P E N   N A V
 	------------------------------------------------*/
-	jQuery('header').on("click", ".open-nav", function() { 
+	jQuery('header').on("click", ".open-nav", function() {
 		var hidden = jQuery('#main-nav').css('display');
 		var borderWidthHeight = parseInt(jQuery("#page-content").css("padding-top"));
 		var fullheight = jQuery(window).height()-(borderWidthHeight*2);
-		
+
 		if (hidden == 'block') {
 			hideResponsiveNav();
 		} else {
-			jQuery('.open-nav span').toggleClass('is-clicked'); 
+			jQuery('.open-nav span').toggleClass('is-clicked');
 			jQuery('#main-nav').slideDown(700,'easeInOutExpo',function(){
 				jQuery('#main-nav').addClass("nav-visible");
 				var menuHeight = jQuery(".nav-inner").height();
@@ -156,42 +156,42 @@ jQuery(window).load(function($) {
 		}
 		return false;
 	});
-	
+
 	function hideResponsiveNav(){
-		jQuery('.open-nav span').toggleClass('is-clicked'); 
+		jQuery('.open-nav span').toggleClass('is-clicked');
 		jQuery('#main-nav').removeClass("nav-visible");
 		jQuery('.nav-inner').animate({marginTop: '0px', opacity: 0}, 700, 'easeInOutExpo', function(){ });
 		jQuery("#main-nav").delay(100).slideUp(700,'easeInOutExpo');
-		
+
 	}
-	
-	
-	
 
-		
 
-	
-	/*---------------------------------------------- 
+
+
+
+
+
+	/*----------------------------------------------
 				 B A C K   T O P   T O P
 	------------------------------------------------*/
 	jQuery('#backtotop').click(function(){
 		jQuery('html, body').animate({scrollTop: 0}, 1000, 'easeInOutQuart');
-		return false;						   
+		return false;
 	});
-	
-			
-	/*---------------------------------------------- 
+
+
+	/*----------------------------------------------
 				   	 P A R A L L A X
 	------------------------------------------------*/
-	if(jQuery().parallax) { 
+	if(jQuery().parallax) {
 		jQuery('.parallax-section').parallax();
 	}
-	
-	
-	
-	
+
+
+
+
 	smoothShow();
-		
+
 });
 
 
@@ -202,19 +202,19 @@ jQuery( window ).scroll(function() {
 
 // SMOOTH SHOW FUNCION FOR ELEMENTS THAT TAKE ACTION WHEN VISIBLE (counter & animations & skills, etc)
 function smoothShow() {
-	
-	
-	
-	
-	
-	
-	/*---------------------------------------------- 
+
+
+
+
+
+
+	/*----------------------------------------------
 				   	 C O U N T E R
 	------------------------------------------------*/
 	jQuery('.counter-value').each(function() {
 		if (jQuery(window).width() > 700) {
 			var visible = jQuery(this).visible(false);
-			if (jQuery(this).hasClass( "anim" )) {} 
+			if (jQuery(this).hasClass( "anim" )) {}
 			else if (visible) {
 				jQuery(this).addClass("anim");
 				var from = parseInt(jQuery(this).attr('data-from'));
@@ -227,9 +227,9 @@ function smoothShow() {
 			jQuery(this).html(to);
 		}
 	});
-	
-	
-		
+
+
+
 }
 jQuery(document).ready(function() {
 
@@ -330,11 +330,11 @@ jQuery(document).ready(function() {
 
 
 
-function splitSection() { 
-	
+function splitSection() {
+
 	var borderWidthHeight = parseInt(jQuery("#bodyborder-top").height());
-	
-	/*---------------------------------------------- 
+
+	/*----------------------------------------------
 			S P L I T   S E C T I O N
 	------------------------------------------------*/
 	if (jQuery(".split-section").length > 0) {
@@ -350,16 +350,16 @@ function splitSection() {
 		difference = Math.round((windowWidth - contentWidth) /2);
 		smallWidth = contentThird+difference+13;
 		bigWidth = windowWidth-smallWidth;
-		
-		if (jQuery(window).width() < 861) { 
+
+		if (jQuery(window).width() < 861) {
 			jQuery(".split-onethird, .split-onethird .split-bg, .split-twothird, .split-twothird .split-bg").css({"width": "100%"});
 		} else {
 			jQuery(".split-onethird, .split-onethird .split-bg").css({"width": smallWidth+"px"});
 			jQuery(".split-twothird, .split-twothird .split-bg").css({"width": bigWidth+"px"});
 		}
-		
+
 		setTimeout(function() {
-			jQuery(".split-section .vertical-center").each(function(index, element) { 
+			jQuery(".split-section .vertical-center").each(function(index, element) {
 				var centerHeight =  jQuery(this).height();
 				var padding =  parseInt(jQuery(this).css('padding-top')) + parseInt(jQuery(this).css('padding-bottom'));
 				var fullHeight = centerHeight+padding;
@@ -373,15 +373,15 @@ function splitSection() {
 			});
 		},500);
 	}
-	
-	
-	if (jQuery(window).width() < 861) { 
+
+
+	if (jQuery(window).width() < 861) {
 		jQuery(".split-left, .split-right").each(function(index, element) {
 			var thisHeight = jQuery(this).height();
 			if (thisHeight < 50) {
 				jQuery(this).css({"min-height": "300px"});
-			} 
+			}
 		});
 	}
-	
+
 }
