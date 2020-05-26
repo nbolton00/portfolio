@@ -1915,6 +1915,7 @@ a.sr-button:hover:after { height: 100%; }
 
 
 	.overlayApplio:after {background:#24195A;}
+	.overlayWeather:after {background:#7EDE92;}
 	.overlayTaller:after {background:#3C7BFF;}
 	.overlayEtch:after {background:#4934FF;}
 	.overlayyc:after {background:#00afff;}
